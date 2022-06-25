@@ -1,0 +1,20 @@
+{
+  "cSpell.words": [],
+  "editor.tabSize": 2,
+  "eslint.validate": [
+    "json",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "markdown",
+    "Dockerfile"
+  ],
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
+  "jest.jestCommandLine": "jest",
+  "docwriter.style": "Google",
+  "java.configuration.updateBuildConfiguration": "automatic",
+}
