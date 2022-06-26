@@ -3,6 +3,7 @@
   "editor.tabSize": 2,
   "eslint.validate": [
     "json",
+    "css",
     "javascript",
     "javascriptreact",
     "typescript",
@@ -14,7 +15,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
   },
-  "jest.jestCommandLine": "jest",
-  "docwriter.style": "Google",
-  "java.configuration.updateBuildConfiguration": "automatic",
+  "docwriter.style": "Google"
 }

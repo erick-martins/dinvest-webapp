@@ -5,68 +5,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name":"Debug iOS",
-      "request":"launch",
-      "type":"reactnative",
-      "cwd":"${workspaceFolder}",
-      "platform":"ios"
-    },
-    {
-      "name": "Attach to packager",
-      "cwd": "${workspaceFolder}",
-      "type": "reactnative", 
-      "request": "attach"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Jest (Current File)",
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": ["${relativeFile}", "--config", "jest.config.js"],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true,
-      "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
-      }
-    },
-    {
-      "name": "Debug tests opened file",
+      "name": "Debug CRA Tests",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
-      "args": [
-        "test",
-        "${fileBasenameNoExtension}",
-        "--runInBand",
-        "--no-cache",
-        "--watchAll"
-      ],
+      "args": ["test", "--runInBand", "--no-cache", "--watchAll=false"],
       "cwd": "${workspaceRoot}",
       "protocol": "inspector",
       "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
-    }
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Jest (All Files)",
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": ["--config", "jest.config.js"],
-      "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true,
-      "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
-      }
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Current Opened File",
-      "program": "${file}",
-      "outputCapture": "std",
-      "console": "integratedTerminal"
+      "env": { "CI": "true" },
+      "disableOptimisticBPs": true
     }
   ]
 }

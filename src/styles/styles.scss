@@ -1,0 +1,32 @@
+$bg-color: #6FCF97;
+$bg-color-200: #3f5c4b;
+
+html, body, #root {
+  background-color: $bg-color;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity:0;
+  background-color: $bg-color-200;
+}
+
+.visible {
+  opacity:1;
+  transition:opacity 0.5s ease;
+}
+
+.layout {
+  height: 100%;
+  width: 100%;
+}
+
+.error-state {
+  padding: 5em;
+  background-color: white;
+}
