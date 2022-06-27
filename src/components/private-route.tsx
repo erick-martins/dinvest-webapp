@@ -4,6 +4,8 @@ import { FCProps } from '@definitions/types';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuthentication } from '../domains/auth/context';
+import FullLoading from '@assets/svgs/full-loading.svg';
+import { useTranslation } from 'react-i18next';
 
 interface Props extends FCProps {
 	redirectTo?: AppRoutes;
@@ -11,8 +13,12 @@ interface Props extends FCProps {
 
 export const PrivateRoute: React.FC<Props> = ({ redirectTo = AppRoutes.Login, children }) => {
 	const { isAuthenticated } = useAuthentication();
+	const { t } = useTranslation();
 
-	const loadingClasses = useClassNames('overlay ', ['visible', isAuthenticated === 'checking']);
+	const loadingClasses = useClassNames('overlay d-flex justify-content-center align-items-center', [
+		'visible',
+		isAuthenticated === 'checking'
+	]);
 
 	const renderContent = () => {
 		if (isAuthenticated === 'not-logged') {
@@ -26,8 +32,8 @@ export const PrivateRoute: React.FC<Props> = ({ redirectTo = AppRoutes.Login, ch
 
 	return (
 		<>
-			<div className={loadingClasses}>
-				<p>loading</p>
+			<div className={loadingClasses} style={{ backgroundImage: `url(${FullLoading})` }}>
+				<p className="loading-text">{t('loading')}</p>
 			</div>
 			{renderContent()}
 		</>

@@ -1,9 +1,13 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 $bg-color: #6FCF97;
 $bg-color-200: #3f5c4b;
-
-html, body, #root {
+$bg-color-100: #373d3a;
+html, body, #root, #root> div {
   background-color: $bg-color;
   height: 100%;
+  font-family: 'Roboto', sans-serif;
 }
 
 .overlay {
@@ -14,11 +18,20 @@ html, body, #root {
   bottom: 0;
   opacity:0;
   background-color: $bg-color-200;
+  background-position: center center;
+  background-size: cover;
+  transition: opacity 0.5s ease-in;
+
+  >.loading-text {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: x-large;
+    color: $bg-color-200;
+  }
 }
 
 .visible {
   opacity:1;
-  transition:opacity 0.5s ease;
 }
 
 .layout {
@@ -29,4 +42,16 @@ html, body, #root {
 .error-state {
   padding: 5em;
   background-color: white;
+}
+
+.text-dark-off-1 {
+  color:  $bg-color-200;
+}
+.text-dark-off-2 {
+  color:  $bg-color-100;
+}
+
+.authentication-left {
+  border-top-right-radius: 20em;
+  border-bottom-left-radius: 20em;
 }

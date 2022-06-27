@@ -3,8 +3,6 @@
 	"editor.tabSize": 2,
 	"eslint.validate": [
 		"json",
-		"css",
-		"scss",
 		"javascript",
 		"javascriptreact",
 		"typescript",

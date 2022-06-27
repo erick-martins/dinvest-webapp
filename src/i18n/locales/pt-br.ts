@@ -7,6 +7,7 @@ export default {
 		error: {
 			genericTitle: 'Oops!',
 			retry: 'Retry'
-		}
+		},
+		loading: 'carregando..'
 	}
 };

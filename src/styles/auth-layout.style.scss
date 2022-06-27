@@ -1,0 +1,23 @@
+.auth-layout {
+  .left-container {
+    width: 20em;
+    background-color: cadetblue;
+  }
+  .right-container {
+    
+  }
+  .form-container {
+  
+  }
+  
+}
+
+// @include media-breakpoint-between(sm, md){
+//   .auth-layout {
+//     .left-container {
+//       width: 20em;
+//       background-color: $bg-color;
+//     }
+    
+//   }
+// }
