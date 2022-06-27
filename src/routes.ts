@@ -1,5 +1,6 @@
 export enum AppRoutes {
 	Dashboard = '/',
-	Login = 'login',
-	SignUp = 'signup'
+	Login = '/auth/login',
+	SignUp = '/auth/signup',
+	RestorePassword = '/auth/forget'
 }

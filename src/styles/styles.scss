@@ -1,11 +1,10 @@
+@import "variables.scss";
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-$bg-color: #6FCF97;
-$bg-color-200: #3f5c4b;
-$bg-color-100: #373d3a;
+
 html, body, #root, #root> div {
-  background-color: $bg-color;
+  background-color: $primary;
   height: 100%;
   font-family: 'Roboto', sans-serif;
 }
@@ -17,7 +16,7 @@ html, body, #root, #root> div {
   right: 0;
   bottom: 0;
   opacity:0;
-  background-color: $bg-color-200;
+  background-color: $primary-300;
   background-position: center center;
   background-size: cover;
   transition: opacity 0.5s ease-in;
@@ -26,7 +25,7 @@ html, body, #root, #root> div {
     text-transform: uppercase;
     font-weight: 500;
     font-size: x-large;
-    color: $bg-color-200;
+    color: $primary-300;
   }
 }
 
@@ -45,10 +44,10 @@ html, body, #root, #root> div {
 }
 
 .text-dark-off-1 {
-  color:  $bg-color-200;
+  color:  $primary-300;
 }
 .text-dark-off-2 {
-  color:  $bg-color-100;
+  color:  $primary-100;
 }
 
 .authentication-left {

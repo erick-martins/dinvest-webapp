@@ -4,6 +4,6 @@ import { App } from '../app';
 
 test('renders learn react link', () => {
 	renderWithReduxAndProviders(<App />);
-	const linkElement = screen.getByText(/loading/i);
+	const linkElement = screen.getByText(/carregando/i);
 	expect(linkElement).toBeInTheDocument();
 });

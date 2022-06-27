@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '@styles/bootstrap.scss';
-import './i18n';
+import './i18n/i18n';
 
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
