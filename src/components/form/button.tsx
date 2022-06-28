@@ -14,11 +14,7 @@ export const Button: React.FC<Props> = ({
 	...props
 }) => {
 	return (
-		<BSButton
-			variant={loading ? 'primary' : 'outline-primary'}
-			{...props}
-			onClick={!loading ? onClick : undefined}
-			className={`mt-2 ${className}`}>
+		<BSButton {...props} onClick={!loading ? onClick : undefined} className={`mt-2 ${className}`}>
 			{loading ? (
 				<Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
 			) : null}

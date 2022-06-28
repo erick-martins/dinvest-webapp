@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Input } from '@components/form/input';
 import { useSignUpFormValidation } from '@domains/auth/form-validation.hook';
 import { AuthenticationLayout } from '@layouts/authentication.layout';
@@ -6,12 +6,21 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@components/form/button';
 import { AppRoutes } from '@app/routes';
+import { useBreakpoint } from '@app/utils/hooks/use-breakpoints.hook';
+import { ButtonVariant } from 'react-bootstrap/esm/types';
 
 export const SignUp: React.FC = () => {
 	const { t } = useTranslation();
 	const { email, password, repeatPass, name, submit, loading, accountCreated, error } =
 		useSignUpFormValidation();
 	const navigate = useNavigate();
+	const breakpoint = useBreakpoint();
+
+	const buttonVariant: ButtonVariant = useMemo(() => {
+		const smallOrLess = ['xs', 'sm'].includes(breakpoint);
+		if (smallOrLess) return 'primary-inverse';
+		return loading ? 'primary' : 'outline-primary';
+	}, [loading, breakpoint]);
 
 	useEffect(() => {
 		if (accountCreated) {
@@ -81,7 +90,7 @@ export const SignUp: React.FC = () => {
 						/>
 					</div>
 					<div className="d-grid gap-2">
-						<Button type="submit" loading={loading}>
+						<Button type="submit" loading={loading} variant={buttonVariant}>
 							{t('auth.signup.form.button.label')}
 						</Button>
 					</div>

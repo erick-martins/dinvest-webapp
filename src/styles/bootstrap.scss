@@ -1,6 +1,8 @@
 // Import Bootstrap and its default variables
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+@import "node_modules/bootstrap/scss/utilities";
 
 // Default variable overrides
 @import "variables";
@@ -20,11 +22,62 @@ $theme-colors: (
 // por exemplo: nos botões
 $min-contrast-ratio:   1;
 
+// Custom breaks
+@include media-breakpoint-up(sm) {
+  // Background Color
+  .bg-sm-white { background-color: $white; }
+  .bg-sm-black { background-color: $black; }
+  .bg-sm-light { background-color: $light; }
+  .bg-sm-dark { background-color: $dark; }
+  .bg-sm-primary { background-color: $primary; }
+  .bg-sm-secondary { background-color: $secondary; }
+
+  // Text Color
+  .text-sm-white { background-color: $white; }
+  .text-sm-black { background-color: $black; }
+  .text-sm-light { background-color: $light; }
+  .text-sm-dark { background-color: $dark; }
+  .text-sm-primary { background-color: $primary; }
+  .text-sm-secondary { background-color: $secondary; }
+}
+@include media-breakpoint-up(md) {
+  // Background Color
+  .bg-md-white { background-color: $white; }
+  .bg-md-black { background-color: $black; }
+  .bg-md-light { background-color: $light; }
+  .bg-md-dark { background-color: $dark; }
+  .bg-md-primary { background-color: $primary; }
+  .bg-md-secondary { background-color: $secondary; }
+
+  // Text Color
+  .text-md-white { background-color: $white; }
+  .text-md-black { background-color: $black; }
+  .text-md-light { background-color: $light; }
+  .text-md-dark { background-color: $dark; }
+  .text-md-primary { background-color: $primary; }
+  .text-md-secondary { background-color: $secondary; }
+}
+@include media-breakpoint-up(lg) {
+  // Background Color
+  .bg-lg-white { background-color: $white; }
+  .bg-lg-black { background-color: $black; }
+  .bg-lg-light { background-color: $light; }
+  .bg-lg-dark { background-color: $dark; }
+  .bg-lg-primary { background-color: $primary; }
+  .bg-lg-secondary { background-color: $secondary; }
+
+  // Text Color
+  .text-lg-white { background-color: $white; }
+  .text-lg-black { background-color: $black; }
+  .text-lg-light { background-color: $light; }
+  .text-lg-dark { background-color: $dark; }
+  .text-lg-primary { background-color: $primary; }
+  .text-lg-secondary { background-color: $secondary; }
+}
+$btn-border-radius: 20em;
 
 // Configurations
-@import "node_modules/bootstrap/scss/mixins";
 @import "node_modules/bootstrap/scss/root";
-@import "node_modules/bootstrap/scss/utilities";
 
 // Layout & components
 @import "node_modules/bootstrap/scss/root";
@@ -61,3 +114,22 @@ $min-contrast-ratio:   1;
 @import "node_modules/bootstrap/scss/helpers";
 
 @import "node_modules/bootstrap/scss/utilities/api";
+
+
+
+.btn-primary-inverse {
+  @include button-variant(
+    $light,     // background
+    $primary,   // border
+    $primary,   // border
+    $light,     // hover-background
+    $light,     // hover-border
+    $primary,   // hover-color
+    $light,     // active-background
+    $primary    // active-border
+    $primary,   // active-color
+    $secondary  // disabled-background
+    $secondary, // disabled-border
+    $light      // disabled-color
+  );
+}

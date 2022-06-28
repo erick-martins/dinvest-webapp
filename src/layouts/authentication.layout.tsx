@@ -55,7 +55,8 @@ export const AuthenticationLayout: React.FC<Props> = ({
 			<Col
 				md={6}
 				sm={12}
-				className="d-flex flex-column align-items-md-end align-items-sm-center justify-content-center bg-white">
+				className="d-flex flex-column align-items-center align-items-md-end justify-content-center bg-md-white">
+				<Image src={LogoWhite} alt="logo" className="mb-5 d-md-none" />
 				<div className="left-container">
 					{renderError()}
 					<h3 className="text-dark-off-1">{title}</h3>
