@@ -1,17 +1,15 @@
+import { useDocumentTitle } from '@app/utils/hooks/use-document-title';
 import { DashboardLayout } from '@layouts/dashboard.layout';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export const ProfileScreen: React.FC = () => {
+	useDocumentTitle('profile');
 	return (
 		<DashboardLayout>
 			<main>
 				<h2>Welcome to the profile!</h2>
-				<p>You can do this, I believe in you.</p>
+				<p>TODO</p>
 			</main>
-			<nav>
-				<Link to="/about">About</Link>
-			</nav>
 		</DashboardLayout>
 	);
 };

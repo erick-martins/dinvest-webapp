@@ -8,6 +8,52 @@ export default {
 			retry: 'TENTAR NOVAMENTE'
 		},
 		loading: 'carregando..',
+		navigation: {
+			prefix: 'DinVest',
+			titles: {
+				login: '{{prefix}} | Entrar',
+				signup: '{{prefix}} | Criar conta',
+				restore: '{{prefix}} | Restaurar senha',
+				home: '{{prefix}} | Dashboard',
+				transactions: '{{prefix}} | Transações',
+				insights: '{{prefix}} | Insights',
+				profile: '{{prefix}} | Perfil'
+			}
+		},
+		dashboard: {
+			home: {
+				pageTitle: 'Dashboard',
+				menuTitle: 'Home',
+				balance: 'Balanço: <1>R$ 2472,20</1>',
+				charts: {
+					expenses: {
+						title: 'Despesas por categoria'
+					},
+					monthly: {
+						title: 'Comparativo semanal'
+					}
+				}
+			},
+			transactions: {
+				pageTitle: 'Transações',
+				menuTitle: 'Transações'
+			},
+			insights: {
+				pageTitle: 'Insights',
+				menuTitle: 'Insights'
+			},
+			profile: {
+				pageTitle: 'Perfil',
+				menuTitle: 'Perfil'
+			},
+			menu: {
+				logoutLabel: 'Sair',
+				profile: {
+					profile: 'Meu profile',
+					logout: 'Sair'
+				}
+			}
+		},
 		auth: {
 			login: {
 				left: {
@@ -101,6 +147,30 @@ export default {
 				},
 				errors: {
 					hasAccount: 'Já existe um usuário associado a este email.'
+				}
+			},
+			restore: {
+				left: {
+					title: 'Welcome to the dinvest!',
+					subtitle: 'Restaurar senha'
+				},
+				right: {
+					title: 'Welcome to the dinvest!',
+					subtitle: 'Já tem conta? Então entre <1>aqui</1> pra fazer login!'
+				},
+				form: {
+					email: {
+						label: 'Email',
+						placeholder: 'digite seu email',
+						description: '',
+						errors: {
+							required: 'email é obrigatório',
+							invalid: 'email inválido'
+						}
+					},
+					button: {
+						label: 'RESTAURAR'
+					}
 				}
 			}
 		},

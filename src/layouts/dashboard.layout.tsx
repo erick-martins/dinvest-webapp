@@ -18,38 +18,40 @@ import { NavigationMenuItem } from './components/types';
 import { NavBar } from './components/navbar';
 import { useUserProfile } from '@domains/user/user.hook';
 import { useAuthentication } from '@domains/auth/context';
+import { useTranslation } from 'react-i18next';
 
 export const DashboardLayout: React.FC<FCProps> = ({ children }) => {
 	const location = useLocation();
 	const { profile } = useUserProfile();
 	const { logout } = useAuthentication();
+	const { t } = useTranslation();
 
 	const menuItems = useMemo(() => {
 		const menuItems: NavigationMenuItem[] = [
 			{
 				type: 'link',
-				title: 'Home',
+				title: t('dashboard.home.pageTitle'),
 				icon: <FontAwesomeIcon icon={faChartLine} />,
 				route: DashboardRoutes.Home,
 				selected: location.pathname === DashboardRoutes.Home
 			},
 			{
 				type: 'link',
-				title: 'Transações',
+				title: t('dashboard.transactions.pageTitle'),
 				icon: <FontAwesomeIcon icon={faExchangeAlt} />,
 				route: DashboardRoutes.Transactions,
 				selected: location.pathname === DashboardRoutes.Transactions
 			},
 			{
 				type: 'link',
-				title: 'Insights',
+				title: t('dashboard.insights.pageTitle'),
 				icon: <FontAwesomeIcon icon={faLightbulb} />,
 				route: DashboardRoutes.Insights,
 				selected: location.pathname === DashboardRoutes.Insights
 			},
 			{
 				type: 'link',
-				title: 'Perfil',
+				title: t('dashboard.profile.pageTitle'),
 				icon: <FontAwesomeIcon icon={faUserCircle} />,
 				route: DashboardRoutes.Profile,
 				selected: location.pathname === DashboardRoutes.Profile
@@ -59,7 +61,7 @@ export const DashboardLayout: React.FC<FCProps> = ({ children }) => {
 			},
 			{
 				type: 'link',
-				title: 'Sair',
+				title: t('dashboard.menu.logoutLabel'),
 				icon: <FontAwesomeIcon icon={faSignOut} />,
 				action: logout
 			}
@@ -83,7 +85,7 @@ export const DashboardLayout: React.FC<FCProps> = ({ children }) => {
 				logout={logout}
 				userName={profile?.name ?? ''}
 			/>
-			{children}
+			<div className="d-block flex-grow-1 h-100">{children}</div>
 		</Container>
 	);
 };

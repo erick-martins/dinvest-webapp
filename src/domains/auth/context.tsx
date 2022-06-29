@@ -3,7 +3,13 @@ import { Logger } from '@app/utils/logger';
 import { AppDispatch, FCProps } from '@definitions/types';
 import { UserService } from '@services/user.service';
 import { createContext } from 'react';
-import { AuthenticateDto, AuthenticationContext, AuthState, CreateAccountDto } from './types';
+import {
+	AuthenticateDto,
+	AuthenticationContext,
+	AuthState,
+	CreateAccountDto,
+	RestorePasswordDto
+} from './types';
 import { useDispatch } from 'react-redux';
 import { UserActions } from '@domains/user/reducer';
 
@@ -33,6 +39,19 @@ export const AuthContext: React.FC<FCProps> = ({ children }) => {
 	useEffect(() => {
 		checkLoggedIn();
 	}, []);
+
+	const restore = async (data: RestorePasswordDto) => {
+		try {
+			setLoadingState(true);
+			const { success } = await UserService.passwordRestore(data);
+			return success;
+		} catch (error: unknown) {
+			Logger.captureException(error);
+			throw error;
+		} finally {
+			setLoadingState(false);
+		}
+	};
 
 	const authenticate = async (data: AuthenticateDto) => {
 		try {
@@ -82,7 +101,8 @@ export const AuthContext: React.FC<FCProps> = ({ children }) => {
 	};
 
 	return (
-		<Context.Provider value={{ isAuthenticated, loading, authenticate, createAccount, logout }}>
+		<Context.Provider
+			value={{ isAuthenticated, loading, authenticate, restore, createAccount, logout }}>
 			{children}
 		</Context.Provider>
 	);

@@ -46,11 +46,10 @@ interface AuthFormValidationConfigSignUp {
 }
 
 interface AuthFormValidationConfigRecoveryPass {
-	scope: 'recovery';
+	scope: 'restore';
 	errorTexts: {
 		email: {
 			required: string;
-			invalid: string;
 		};
 	};
 }
@@ -470,6 +469,69 @@ export const useSignUpFormValidation = () => {
 		},
 		error: error,
 		accountCreated: accountCreated,
+		loading: loading,
+		submit: submit
+	};
+};
+
+export const useRestoreFormValidation = () => {
+	const auth = useAuthentication();
+	const [loading, setLoadingState] = useState(false);
+	const [error, setError] = useState('');
+
+	const { t } = useTranslation();
+
+	const configuration: AuthFormValidationConfig = useMemo(() => {
+		return {
+			scope: 'restore',
+			errorTexts: {
+				email: {
+					required: t('auth.login.form.email.errors.required'),
+					invalid: t('auth.signup.form.email.errors.invalid')
+				}
+			}
+		};
+	}, []);
+
+	const validation = useAuthFormValidation(configuration);
+	const [email, setEmail] = useState('');
+
+	const submit = async (event?: React.FormEvent<HTMLFormElement>) => {
+		event?.preventDefault();
+		event?.stopPropagation();
+
+		setError('');
+		if (!validation.email.validate(email)) return;
+		setLoadingState(true);
+		try {
+			return await auth.restore({ email });
+		} catch (error: unknown) {
+			const message = extractErrorMessage(error);
+			setError(message);
+		} finally {
+			setLoadingState(false);
+		}
+	};
+
+	const onEmailChange = (event: FormEvent<HTMLInputElement>) => {
+		setEmail(event.currentTarget.value);
+		if (validation.email.error) {
+			validation.email.validate(event.currentTarget.value);
+		}
+	};
+	const onEmailBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
+		validation.email.validate(event.currentTarget.value);
+	};
+
+	return {
+		email: {
+			value: email,
+			onChange: onEmailChange,
+			disabled: loading,
+			error: validation.email.error,
+			onBlur: onEmailBlur
+		},
+		error: error,
 		loading: loading,
 		submit: submit
 	};

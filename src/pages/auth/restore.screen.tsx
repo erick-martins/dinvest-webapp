@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Input } from '@components/form/input';
-import { useLoginFormValidation } from '@domains/auth/form-validation.hook';
+import { useRestoreFormValidation } from '@domains/auth/form-validation.hook';
 import { AuthenticationLayout } from '@layouts/authentication.layout';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,13 +10,13 @@ import { useBreakpoint } from '@app/utils/hooks/use-breakpoints.hook';
 import { ButtonVariant } from 'react-bootstrap/esm/types';
 import { useDocumentTitle } from '@app/utils/hooks/use-document-title';
 
-export const LoginScreen: React.FC = () => {
-	useDocumentTitle('login');
+export const RestorePassScreen: React.FC = () => {
+	useDocumentTitle('restore');
 
 	const { t } = useTranslation();
-	const { email, password, submit, loading, loggedIn, error } = useLoginFormValidation();
-	const navigate = useNavigate();
+	const { email, submit, loading, error } = useRestoreFormValidation();
 	const breakpoint = useBreakpoint();
+	const navigate = useNavigate();
 
 	const buttonVariant: ButtonVariant = useMemo(() => {
 		const smallOrLess = ['xs', 'sm'].includes(breakpoint);
@@ -24,57 +24,43 @@ export const LoginScreen: React.FC = () => {
 		return loading ? 'primary' : 'outline-primary';
 	}, [loading, breakpoint]);
 
-	useEffect(() => {
-		if (loggedIn) {
-			navigate(AppRoutes.Dashboard);
+	const submitHandler = async (event?: React.FormEvent<HTMLFormElement>) => {
+		const result = await submit(event);
+		if (result) {
+			navigate(AppRoutes.Login, { replace: true });
 		}
-	}, [loggedIn]);
+	};
 
 	return (
 		<AuthenticationLayout
-			title={t('auth.login.left.title')}
-			subtitle={t('auth.login.left.subtitle')}
-			rightTitle={t('auth.login.right.title')}
+			title={t('auth.restore.left.title')}
+			subtitle={t('auth.restore.left.subtitle')}
+			rightTitle={t('auth.restore.right.title')}
 			rightSubtitle={
 				<p className="text-primary-700">
-					<Trans i18nKey="auth.login.right.subtitle">
+					<Trans i18nKey="auth.restore.right.subtitle">
 						Ainda não tem conta? Então entre <Link to={AppRoutes.SignUp}>aqui</Link> e crie a sua
 						conta!
 					</Trans>
 				</p>
 			}
 			error={error}>
-			<form className="me-md-5 d-flex flex-column" onSubmit={submit}>
+			<form className="me-md-5 d-flex flex-column" onSubmit={submitHandler}>
 				<div className="form-group w-100">
 					<div className="mb-3">
 						<Input
 							name="email"
 							type="email"
-							label={t('auth.login.form.email.label')}
-							placeholder={t('auth.login.form.email.placeholder')}
-							description={t('auth.login.form.email.description')}
+							label={t('auth.restore.form.email.label')}
+							placeholder={t('auth.restore.form.email.placeholder')}
+							description={t('auth.restore.form.email.description')}
 							autoComplete="on"
 							{...email}
 						/>
 					</div>
-					<div className="mb-3">
-						<Input
-							name="password"
-							type="password"
-							label={t('auth.login.form.password.label')}
-							placeholder={t('auth.login.form.password.placeholder')}
-							description={t('auth.login.form.password.description')}
-							className="mb-2"
-							autoComplete="on"
-							{...password}
-						/>
-					</div>
-					<div className="mb-3">
-						<Link to={AppRoutes.RestorePassword}>{t('auth.login.form.recovery.label')}</Link>
-					</div>
 					<div className="d-grid gap-2">
 						<Button type="submit" loading={loading} variant={buttonVariant}>
-							{t('auth.login.form.button.label')}
+							{t('auth.restore.form.button.label')}
 						</Button>
 					</div>
 				</div>

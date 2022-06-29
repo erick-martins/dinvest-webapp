@@ -45,7 +45,7 @@ export const AuthenticationLayout: React.FC<Props> = ({
 	const renderSubtitle = (subtitle?: string | ReactNode) => {
 		if (!subtitle) return null;
 		if (typeof subtitle === 'string') {
-			return <p className="text-dark-off-1">{subtitle}</p>;
+			return <p className="text-primary-700">{subtitle}</p>;
 		}
 		return <>{subtitle}</>;
 	};
@@ -59,7 +59,7 @@ export const AuthenticationLayout: React.FC<Props> = ({
 				<Image src={LogoWhite} alt="logo" className="mb-5 d-md-none" />
 				<div className="left-container">
 					{renderError()}
-					<h3 className="text-dark-off-1">{title}</h3>
+					<h3 className="text-primary-700">{title}</h3>
 					{renderSubtitle(subtitle)}
 					{children}
 				</div>
@@ -70,7 +70,7 @@ export const AuthenticationLayout: React.FC<Props> = ({
 				className="d-md-flex h-100 flex-column align-items-start justify-content-center d-none ps-5 text-center ">
 				<div className="right-container">
 					<Image src={LogoWhite} alt="logo" className="mb-5" />
-					<h3 className="text-dark-off-1">{rightTitle}</h3>
+					<h3 className="text-primary-700">{rightTitle}</h3>
 					{renderSubtitle(rightSubtitle)}
 				</div>
 			</Col>

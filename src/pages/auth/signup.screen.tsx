@@ -8,8 +8,11 @@ import { Button } from '@components/form/button';
 import { AppRoutes } from '@app/routes';
 import { useBreakpoint } from '@app/utils/hooks/use-breakpoints.hook';
 import { ButtonVariant } from 'react-bootstrap/esm/types';
+import { useDocumentTitle } from '@app/utils/hooks/use-document-title';
 
 export const SignUpScreen: React.FC = () => {
+	useDocumentTitle('signup');
+
 	const { t } = useTranslation();
 	const { email, password, repeatPass, name, submit, loading, accountCreated, error } =
 		useSignUpFormValidation();
@@ -30,11 +33,11 @@ export const SignUpScreen: React.FC = () => {
 
 	return (
 		<AuthenticationLayout
-			title="Welcome to the dinvest!"
-			rightTitle="Welcome to the dinvest!"
-			subtitle="You can do this, I believe in you."
+			title={t('auth.signup.left.title')}
+			subtitle={t('auth.signup.left.subtitle')}
+			rightTitle={t('auth.signup.right.title')}
 			rightSubtitle={
-				<p className="text-dark-off-1">
+				<p className="text-primary-700">
 					<Trans i18nKey="auth.signup.right.subtitle">
 						Já tem conta? Então entre <Link to={AppRoutes.Login}>aqui</Link> pra fazer login!
 					</Trans>

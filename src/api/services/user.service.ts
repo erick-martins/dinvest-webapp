@@ -2,7 +2,7 @@ import { fakeRequest } from '@app/utils/fake-request';
 import { mockerSuccessResponse } from '@app/__mocks__/success-response.mock';
 import { MockedUserProfile } from '@app/__mocks__/user.mock';
 import { Environment } from '@config/environment';
-import { AuthenticateDto, CreateAccountDto } from '@domains/auth/types';
+import { AuthenticateDto, CreateAccountDto, RestorePasswordDto } from '@domains/auth/types';
 import { UserProfile } from '@domains/user/types';
 import { ApiService, SuccessApiResponse } from '../api.service';
 
@@ -37,9 +37,9 @@ export class UserService {
 		return response.data;
 	}
 
-	static async passwordRestore(email: string) {
+	static async passwordRestore(data: RestorePasswordDto) {
 		if (Environment.mockedBehavior) return await fakeRequest(mockerSuccessResponse);
-		const response = await ApiService.post<SuccessApiResponse>('user/restore', { email });
+		const response = await ApiService.post<SuccessApiResponse>('user/restore', data);
 		return response.data;
 	}
 
