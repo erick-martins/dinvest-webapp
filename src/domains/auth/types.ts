@@ -7,6 +7,7 @@ export interface AuthenticationContext {
 	authenticate: (data: AuthenticateDto) => Promise<UserProfile>;
 	createAccount: (data: CreateAccountDto) => Promise<UserProfile>;
 	logout: () => Promise<boolean>;
+	loading: boolean;
 }
 export interface AuthenticateDto {
 	email: string;

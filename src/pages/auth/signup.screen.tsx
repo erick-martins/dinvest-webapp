@@ -9,7 +9,7 @@ import { AppRoutes } from '@app/routes';
 import { useBreakpoint } from '@app/utils/hooks/use-breakpoints.hook';
 import { ButtonVariant } from 'react-bootstrap/esm/types';
 
-export const SignUp: React.FC = () => {
+export const SignUpScreen: React.FC = () => {
 	const { t } = useTranslation();
 	const { email, password, repeatPass, name, submit, loading, accountCreated, error } =
 		useSignUpFormValidation();

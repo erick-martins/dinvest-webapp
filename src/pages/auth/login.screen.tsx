@@ -9,7 +9,7 @@ import { AppRoutes } from '@app/routes';
 import { useBreakpoint } from '@app/utils/hooks/use-breakpoints.hook';
 import { ButtonVariant } from 'react-bootstrap/esm/types';
 
-export const Login: React.FC = () => {
+export const LoginScreen: React.FC = () => {
 	const { t } = useTranslation();
 	const { email, password, submit, loading, loggedIn, error } = useLoginFormValidation();
 	const navigate = useNavigate();

@@ -1,17 +1,17 @@
 import { AppRoutes } from '@app/routes';
 import { useClassNames } from '@app/utils/hooks/class-names';
-import { FCProps } from '@definitions/types';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuthentication } from '../domains/auth/context';
 import FullLoading from '@assets/svgs/full-loading.svg';
 import { useTranslation } from 'react-i18next';
 
-interface Props extends FCProps {
+interface Props {
 	redirectTo?: AppRoutes;
+	screen: React.ComponentType;
 }
 
-export const PrivateRoute: React.FC<Props> = ({ redirectTo = AppRoutes.Login, children }) => {
+export const PrivateRoute: React.FC<Props> = ({ redirectTo = AppRoutes.Login, screen: Screen }) => {
 	const { isAuthenticated } = useAuthentication();
 	const { t } = useTranslation();
 
@@ -25,7 +25,7 @@ export const PrivateRoute: React.FC<Props> = ({ redirectTo = AppRoutes.Login, ch
 			return <Navigate to={redirectTo} replace />;
 		}
 		if (isAuthenticated === 'logged') {
-			return <>{children}</>;
+			return <Screen />;
 		}
 		return null;
 	};

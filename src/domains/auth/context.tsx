@@ -13,6 +13,7 @@ export const AuthContext: React.FC<FCProps> = ({ children }) => {
 	const dispatch = useDispatch<AppDispatch>();
 
 	const [isAuthenticated, setIsAuthenticatedState] = useState<AuthState>('checking');
+	const [loading, setLoadingState] = useState<boolean>(false);
 
 	const checkLoggedIn = async () => {
 		try {
@@ -35,6 +36,7 @@ export const AuthContext: React.FC<FCProps> = ({ children }) => {
 
 	const authenticate = async (data: AuthenticateDto) => {
 		try {
+			setLoadingState(true);
 			const profile = await UserService.login(data);
 			dispatch(UserActions.setProfile(profile));
 			setIsAuthenticatedState('logged');
@@ -42,11 +44,14 @@ export const AuthContext: React.FC<FCProps> = ({ children }) => {
 		} catch (error: unknown) {
 			Logger.captureException(error);
 			throw error;
+		} finally {
+			setLoadingState(false);
 		}
 	};
 
 	const createAccount = async (data: CreateAccountDto) => {
 		try {
+			setLoadingState(true);
 			const profile = await UserService.signup(data);
 			dispatch(UserActions.setProfile(profile));
 			setIsAuthenticatedState('logged');
@@ -54,23 +59,30 @@ export const AuthContext: React.FC<FCProps> = ({ children }) => {
 		} catch (error: unknown) {
 			Logger.captureException(error);
 			throw error;
+		} finally {
+			setLoadingState(false);
 		}
 	};
 
 	const logout = async () => {
 		try {
+			setLoadingState(true);
+			setIsAuthenticatedState('checking');
 			const { success } = await UserService.logout();
 			setIsAuthenticatedState('not-logged');
 			dispatch(UserActions.reset());
 			return success;
 		} catch (error: unknown) {
+			setIsAuthenticatedState('logged');
 			Logger.captureException(error);
 			throw error;
+		} finally {
+			setLoadingState(false);
 		}
 	};
 
 	return (
-		<Context.Provider value={{ isAuthenticated, authenticate, createAccount, logout }}>
+		<Context.Provider value={{ isAuthenticated, loading, authenticate, createAccount, logout }}>
 			{children}
 		</Context.Provider>
 	);

@@ -51,11 +51,11 @@ export const AuthenticationLayout: React.FC<Props> = ({
 	};
 
 	return (
-		<Row className="row h-100 auth-layout">
+		<Row className="row h-100 auth-layout auth__layout">
 			<Col
 				md={6}
 				sm={12}
-				className="d-flex flex-column align-items-center align-items-md-end justify-content-center bg-md-white">
+				className="d-flex h-100 flex-column align-items-center align-items-md-end justify-content-center bg-md-white">
 				<Image src={LogoWhite} alt="logo" className="mb-5 d-md-none" />
 				<div className="left-container">
 					{renderError()}
@@ -67,7 +67,7 @@ export const AuthenticationLayout: React.FC<Props> = ({
 			<Col
 				md={6}
 				sm={12}
-				className="d-md-flex flex-column align-items-start justify-content-center d-none ps-5 text-center ">
+				className="d-md-flex h-100 flex-column align-items-start justify-content-center d-none ps-5 text-center ">
 				<div className="right-container">
 					<Image src={LogoWhite} alt="logo" className="mb-5" />
 					<h3 className="text-dark-off-1">{rightTitle}</h3>

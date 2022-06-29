@@ -4,7 +4,6 @@
 
 
 html, body, #root, #root> div {
-  background-color: $primary;
   height: 100%;
   font-family: 'Roboto', sans-serif;
 }
@@ -15,11 +14,14 @@ html, body, #root, #root> div {
   left: 0;
   right: 0;
   bottom: 0;
-  opacity:0;
   background-color: $primary-300;
   background-position: center center;
   background-size: cover;
-  transition: opacity 0.5s ease-in;
+  
+  opacity:0;
+  visibility: hidden;
+
+  transition: visibility 0s, opacity 0.5s ease-in;
 
   >.loading-text {
     text-transform: uppercase;
@@ -30,7 +32,8 @@ html, body, #root, #root> div {
 }
 
 .visible {
-  opacity:1;
+  opacity: 1;
+  visibility: visible;
 }
 
 .layout {
@@ -53,4 +56,38 @@ html, body, #root, #root> div {
 .authentication-left {
   border-top-right-radius: 20em;
   border-bottom-left-radius: 20em;
+}
+
+.auth__layout {
+  background-color: $primary;
+}
+
+.dashboard__sidebar {
+  background-color: $secondary-700;
+  border-radius: 0 !important;
+  
+  .nav-link {
+    color: $light;
+    &.active {
+      background-color: $primary;
+      color: $light;
+      border-radius: 0 !important;
+    }
+  }
+}
+.dashboard__navbar {
+  background-color: $secondary-700 !important;
+
+  .navbar-brand > img {
+    max-height: 2.1rem;
+  }
+
+  .nav-link {
+    color: $light;
+    &.active {
+      background-color: $primary !important;
+      color: $light;
+      border-radius: 0 !important;
+    }
+  }
 }
